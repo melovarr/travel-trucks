@@ -1,0 +1,8 @@
+.btn {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 173px;
+  height: 56px;
+  background: var(--button);
+  border-color: transparent;
+}
