@@ -1,4 +1,5 @@
 // import React, { useState } from 'react';
+import styles from './Filters.module.css';
 
 // Можеш винести ці масиви згідно потреб (для динамічного рендеру)
 const EQUIPMENT = [
@@ -10,21 +11,21 @@ const EQUIPMENT = [
 ];
 
 const BODY_TYPES = [
-  { key: 'Van', label: 'Van' },
-  { key: 'Fully Integrated', label: 'Fully Integrated' },
-  { key: 'Alcove', label: 'Alcove' },
+  { key: 'panelTruck', label: 'Panel Truck' },
+  { key: 'fullyIntegrated', label: 'Fully Integrated' },
+  { key: 'alcove', label: 'Alcove' },
 ];
 
 // Тип фільтрів
-export type Filters = {
+export type FiltersType = {
   location: string;
   equipment: string[];
   bodyType: string;
 };
 
 type FiltersProps = {
-  filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  filters: FiltersType;
+  setFilters: React.Dispatch<React.SetStateAction<FiltersType>>;
   onSearch: () => void;
 };
 
@@ -49,8 +50,8 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters, onSearch }) => {
   };
 
   return (
-    <div className="filters-container">
-      <div>
+    <div className={styles.filtersContainer}>
+      <div className={styles.locationInput}>
         <label>Location</label>
         <input
           type="text"
@@ -59,10 +60,10 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters, onSearch }) => {
           placeholder="Kyiv, Ukraine"
         />
       </div>
-
+      <p>Filters</p>
       <div>
         <h3>Vehicle equipment</h3>
-        <div className="equipment-buttons">
+        <div className={styles.equipmentButtons}>
           {EQUIPMENT.map(item => (
             <button
               key={item.key}
@@ -78,7 +79,7 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters, onSearch }) => {
 
       <div>
         <h3>Vehicle type</h3>
-        <div className="bodytype-buttons">
+        <div className={styles.bodyTypeButtons}>
           {BODY_TYPES.map(item => (
             <button
               key={item.key}

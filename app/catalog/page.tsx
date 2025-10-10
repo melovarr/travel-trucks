@@ -4,16 +4,17 @@ import { useEffect, useState } from 'react';
 import CamperList from '../../components/CamperList/CamperList';
 import { Camper, getCampers } from '../../lib/api';
 import styles from './catalogPage.module.css';
-import { Filters } from 'components/components/Filters/Filters';
+import { FiltersType } from 'components/components/Filters/Filters';
+import Filters from 'components/components/Filters/Filters';
 
-const initialFilters: Filters = {
+const initialFilters: FiltersType = {
   location: '',
   equipment: [] as string[],
   bodyType: '',
 };
 
 export default function Catalog() {
-  const [filters, setFilters] = useState<Filters>(initialFilters);
+  const [filters, setFilters] = useState<FiltersType>(initialFilters);
   const [campers, setCampers] = useState<Camper[]>([]);
 
   useEffect(() => {
@@ -28,22 +29,22 @@ export default function Catalog() {
     fetchAllCampers();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilters(prev => ({ ...prev, location: e.target.value }));
-  };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFilters(prev => ({ ...prev, location: e.target.value }));
+  // };
 
-  const handleEquipmentClick = (eq: string) => {
-    setFilters(prev => ({
-      ...prev,
-      equipment: prev.equipment.includes(eq)
-        ? prev.equipment.filter(item => item !== eq)
-        : [...prev.equipment, eq],
-    }));
-  };
+  // const handleEquipmentClick = (eq: string) => {
+  //   setFilters(prev => ({
+  //     ...prev,
+  //     equipment: prev.equipment.includes(eq)
+  //       ? prev.equipment.filter(item => item !== eq)
+  //       : [...prev.equipment, eq],
+  //   }));
+  // };
 
-  const handleBodyTypeClick = (type: string) => {
-    setFilters(prev => ({ ...prev, bodyType: type }));
-  };
+  // const handleBodyTypeClick = (type: string) => {
+  //   setFilters(prev => ({ ...prev, bodyType: type }));
+  // };
 
   const handleSearch = async () => {
     const filteredCampers = await getCampers(filters);
@@ -53,7 +54,12 @@ export default function Catalog() {
 
   return (
     <div className={styles.container}>
-      <div>
+      <Filters
+        filters={filters}
+        setFilters={setFilters}
+        onSearch={handleSearch}
+      />
+      {/* <div>
         <div>
           <p>Location</p>
           <input
@@ -97,7 +103,7 @@ export default function Catalog() {
         <button className="btn" type="button" onClick={handleSearch}>
           Search
         </button>
-      </div>
+      </div> */}
       <div>{campers.length > 0 && <CamperList campers={campers} />}</div>
     </div>
   );

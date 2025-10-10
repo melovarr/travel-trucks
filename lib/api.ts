@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Filters } from 'components/components/Filters/Filters';
+import { FiltersType } from 'components/components/Filters/Filters';
 
 export type Gallery = {
   thumb: string;
@@ -52,7 +52,7 @@ const nextServer = axios.create({
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const getCampers = async (filters: Filters): Promise<Camper[]> => {
+export const getCampers = async (filters: FiltersType): Promise<Camper[]> => {
   await delay(3000);
   console.log('Filters:', filters);
   const params = new URLSearchParams();
