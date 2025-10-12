@@ -6,7 +6,7 @@ type CamperListProps = {
 };
 
 const CamperList: React.FC<CamperListProps> = ({ campers }) => {
-  if (!campers.length) {
+  if (!Array.isArray(campers) || campers.length === 0) {
     return <p>No campers found.</p>;
   }
 

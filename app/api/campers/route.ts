@@ -15,6 +15,8 @@ interface Camper {
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams;
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '4');
     const location = searchParams.get('location');
     const form = searchParams.get('form');
     const AC = searchParams.get('AC');
@@ -56,11 +58,14 @@ export async function GET(request: NextRequest) {
     if (bathroom === 'true') {
       filteredCampers = filteredCampers.filter((c: Camper) => c.bathroom);
     }
-
     // аналогічно по інших параметрах
 
+    const start = (page - 1) * limit;
+    const end = start + limit;
+    const pagedCampers = filteredCampers.slice(start, end);
+
     return NextResponse.json({
-      items: filteredCampers,
+      items: pagedCampers,
       total: filteredCampers.length,
     });
   } catch (error) {

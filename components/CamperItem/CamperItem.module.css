@@ -13,6 +13,15 @@
   border-radius: 10px;
 }
 
+.camperItem__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 24px;
+  width: 524px;
+  height: 320px;
+}
+
 .camperItem__top {
   display: flex;
   flex-direction: column;
@@ -41,9 +50,26 @@
   color: var(--yellow);
 }
 
+.camperItem__description {
+  white-space: nowrap; /* Не переносити текст на новий рядок */
+  overflow: hidden; /* Ховати вихідний за межі контейнера текст */
+  text-overflow: ellipsis; /* Додавати три крапки в кінці обрізаного тексту */
+  /* max-width: 100%; */
+}
+
 .camperItem__features {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 12px;
+}
+
+.btn {
+  border-radius: 200px;
+  padding: 16px;
+  width: 173px;
+  height: 56px;
+  background: var(--button);
+  border-color: transparent;
+  text-align: center;
 }

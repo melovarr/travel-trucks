@@ -1,3 +1,23 @@
 .container {
   display: flex;
+  gap: 64px; /* Add some space between filters and list */
+}
+
+.filtersWrapper {
+  position: sticky;
+  top: 60px; /* Height of the sticky header */
+  height: calc(100vh - 80px); /* Full height minus header and some padding */
+  overflow-y: auto; /* Allow filters to scroll if content is too long */
+  flex-basis: 360px; /* Fixed width for the filters block */
+  flex-shrink: 0; /* Prevent the block from shrinking */
+}
+
+.listWrapper {
+  flex: 1; /* Take up the remaining space */
+}
+
+.loadMoreContainer {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
 }

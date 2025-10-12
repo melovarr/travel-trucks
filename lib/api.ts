@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FiltersType } from 'components/components/Filters/Filters';
+import { FiltersType } from '../components/Filters/Filters';
 
 export type Gallery = {
   thumb: string;
@@ -52,20 +52,21 @@ const nextServer = axios.create({
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const getCampers = async (filters: FiltersType): Promise<Camper[]> => {
-  await delay(3000);
-  console.log('Filters:', filters);
+export const getCampers = async (
+  filters: FiltersType & { page?: number; limit?: number }
+): Promise<camperListResponse> => {
+  await delay(1000); // Reduced delay for better UX
   const params = new URLSearchParams();
   if (filters.location) params.append('location', filters.location);
   if (filters.bodyType) params.append('form', filters.bodyType);
-  filters.equipment.forEach(eq => params.append(eq, 'true'));
-  console.log('Query params:', params.toString());
+  filters.equipment.forEach((eq: string) => params.append(eq, 'true'));
+  if (filters.page) params.append('page', filters.page.toString());
+  if (filters.limit) params.append('limit', filters.limit.toString());
+
   const res = await nextServer.get<camperListResponse>(
     `/campers?${params.toString()}`
   );
-  // const data = await res.json();
-  // return data.items || data;
-  return res.data.items;
+  return res.data;
 };
 
 export const getSingleCamper = async (id: string) => {
