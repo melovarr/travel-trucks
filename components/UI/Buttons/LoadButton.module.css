@@ -1,17 +1,17 @@
 .btn {
   border-radius: 200px;
   padding: 16px;
-  width: 166px;
+  width: 145px;
   height: 56px;
-  background: var(--button);
-  border-color: transparent;
+  background: var(--background);
+  border: 1px solid var(--gray-light);
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
   line-height: 150%;
   letter-spacing: -0.01em;
-  color: var(--white);
+  color: var(--main);
 }
 .btn:hover {
-  background: var(--button-hover);
+  border: 1px solid var(--button-hover);
 }

@@ -1,6 +1,14 @@
 import React from 'react';
 import styles from './Filters.module.css';
 import useCampersStore from 'components/store/useCampersStore';
+import Image from 'next/image';
+import Button from '../UI/Buttons/Button';
+
+// import AcIcon from '../../public/icons/wind.svg';
+// import AutomaticIcon from '../../public/icons/diagram.svg';
+// import KitchenIcon from '../../public/icons/cup-hot.svg';
+// import TvIcon from '../../public/icons/tv.svg';
+// import BathroomIcon from '../../public/icons/ph_shower.svg';
 
 export type FiltersType = {
   location: string;
@@ -11,17 +19,25 @@ export type FiltersType = {
 };
 
 const EQUIPMENT = [
-  { key: 'AC', label: 'AC' },
-  { key: 'Automatic', label: 'Automatic' },
-  { key: 'Kitchen', label: 'Kitchen' },
-  { key: 'TV', label: 'TV' },
-  { key: 'Bathroom', label: 'Bathroom' },
+  { key: 'AC', label: 'AC', iconSrc: '/icons/wind.svg' },
+  { key: 'Automatic', label: 'Automatic', iconSrc: '/icons/diagram.svg' },
+  { key: 'Kitchen', label: 'Kitchen', iconSrc: '/icons/cup-hot.svg' },
+  { key: 'TV', label: 'TV', iconSrc: '/icons/tv.svg' },
+  { key: 'Bathroom', label: 'Bathroom', iconSrc: '/icons/ph_shower.svg' },
 ];
 
 const BODY_TYPES = [
-  { key: 'panelTruck', label: 'Panel Truck' },
-  { key: 'fullyIntegrated', label: 'Fully Integrated' },
-  { key: 'alcove', label: 'Alcove' },
+  {
+    key: 'panelTruck',
+    label: 'Panel Truck',
+    iconSrc: '/icons/bi_grid-1x2.svg',
+  },
+  {
+    key: 'fullyIntegrated',
+    label: 'Fully Integrated',
+    iconSrc: '/icons/bi_grid.svg',
+  },
+  { key: 'alcove', label: 'Alcove', iconSrc: '/icons/bi_grid-3x3-gap.svg' },
 ];
 
 const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
@@ -51,17 +67,35 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
     <div className={styles.filtersContainer}>
       <div className={styles.locationInput}>
         <label>Location</label>
-        <input
-          type="text"
-          value={filters.location}
-          onChange={handleLocationChange}
-          placeholder="Kyiv, Ukraine"
-        />
+        <div style={{ position: 'relative', display: 'inline-block' }}>
+          <Image
+            src="/icons/map.svg"
+            alt="location icon"
+            width={20}
+            height={20}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: 18,
+              transform: 'translateY(-50%)',
+
+              pointerEvents: 'none',
+            }}
+          />
+          <input
+            type="text"
+            value={filters.location}
+            onChange={handleLocationChange}
+            placeholder="City"
+            style={{ paddingLeft: 46 }}
+          />
+        </div>
       </div>
 
-      <p>Filters</p>
-      <div>
-        <h3>Vehicle equipment</h3>
+      <p className={styles.filtersTitle}>Filters</p>
+      <div className={styles.equipmentSection}>
+        <h3 className={styles.equipmentTitle}>Vehicle equipment</h3>
+        <hr className={styles.separator} />
         <div className={styles.equipmentButtons}>
           {EQUIPMENT.map(item => (
             <button
@@ -70,14 +104,21 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
               className={filters.equipment.includes(item.key) ? 'active' : ''}
               onClick={() => handleEquipmentClick(item.key)}
             >
+              <Image
+                src={item.iconSrc}
+                alt={item.label}
+                width={32}
+                height={32}
+              />
               {item.label}
             </button>
           ))}
         </div>
       </div>
 
-      <div>
-        <h3>Vehicle type</h3>
+      <div className={styles.bodyTypeSection}>
+        <h3 className={styles.bodyTypeTitle}>Vehicle type</h3>
+        <hr className={styles.separator} />
         <div className={styles.bodyTypeButtons}>
           {BODY_TYPES.map(item => (
             <button
@@ -86,116 +127,23 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
               className={filters.bodyType === item.key ? 'active' : ''}
               onClick={() => handleBodyTypeClick(item.key)}
             >
+              <Image
+                src={item.iconSrc}
+                alt={item.label}
+                width={32}
+                height={32}
+              />
               {item.label}
             </button>
           ))}
         </div>
       </div>
-
-      <button className="search-btn" type="button" onClick={onSearch}>
+      <Button onClick={onSearch}>Search</Button>
+      {/* <button className="search-btn" type="button" onClick={onSearch}>
         Search
-      </button>
+      </button> */}
     </div>
   );
 };
 
 export default Filters;
-
-// // import React, { useState } from 'react';
-// import styles from './Filters.module.css';
-
-// // Можеш винести ці масиви згідно потреб (для динамічного рендеру)
-// const EQUIPMENT = [
-//   { key: 'AC', label: 'AC' },
-//   { key: 'Automatic', label: 'Automatic' },
-//   { key: 'Kitchen', label: 'Kitchen' },
-//   { key: 'TV', label: 'TV' },
-//   { key: 'Bathroom', label: 'Bathroom' },
-// ];
-
-// const BODY_TYPES = [
-//   { key: 'panelTruck', label: 'Panel Truck' },
-//   { key: 'fullyIntegrated', label: 'Fully Integrated' },
-//   { key: 'alcove', label: 'Alcove' },
-// ];
-
-// Тип фільтрів
-
-// type FiltersProps = {
-//   filters: FiltersType;
-//   setFilters: React.Dispatch<React.SetStateAction<FiltersType>>;
-//   onSearch: () => void;
-// };
-
-// const Filters: React.FC<FiltersProps> = ({ filters, setFilters, onSearch }) => {
-//   // Оновлення локації
-//   const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setFilters(prev => ({ ...prev, location: e.target.value }));
-//   };
-
-//   // Оновлення вибору обладнання (toggle)
-//   const handleEquipmentClick = (key: string) => {
-//     setFilters(prev =>
-//       prev.equipment.includes(key)
-//         ? { ...prev, equipment: prev.equipment.filter(eq => eq !== key) }
-//         : { ...prev, equipment: [...prev.equipment, key] }
-//     );
-//   };
-
-//   // Вибір типу кузова — один активний
-//   const handleBodyTypeClick = (key: string) => {
-//     setFilters(prev => ({ ...prev, bodyType: key }));
-//   };
-
-//   return (
-//     <div className={styles.filtersContainer}>
-//       <div className={styles.locationInput}>
-//         <label>Location</label>
-//         <input
-//           type="text"
-//           value={filters.location}
-//           onChange={handleLocationChange}
-//           placeholder="Kyiv, Ukraine"
-//         />
-//       </div>
-//       <p>Filters</p>
-//       <div>
-//         <h3>Vehicle equipment</h3>
-//         <div className={styles.equipmentButtons}>
-//           {EQUIPMENT.map(item => (
-//             <button
-//               key={item.key}
-//               type="button"
-//               className={filters.equipment.includes(item.key) ? 'active' : ''}
-//               onClick={() => handleEquipmentClick(item.key)}
-//             >
-//               {item.label}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-
-//       <div>
-//         <h3>Vehicle type</h3>
-//         <div className={styles.bodyTypeButtons}>
-//           {BODY_TYPES.map(item => (
-//             <button
-//               key={item.key}
-//               type="button"
-//               className={filters.bodyType === item.key ? 'active' : ''}
-//               onClick={() => handleBodyTypeClick(item.key)}
-//             >
-//               {item.label}
-//             </button>
-//           ))}
-//         </div>
-//       </div>
-
-//       <button className="search-btn" type="button" onClick={onSearch}>
-//         Search
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Filters;

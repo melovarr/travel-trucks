@@ -5,6 +5,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
+// import BookingForm from 'components/components/BookingForm/BookingForm';
+import CamperDetailsTabs from './CamperDetailsTabs';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -24,6 +26,7 @@ const CamperDetails = async ({ params }: Props) => {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <CamperDetailsClient />
+      <CamperDetailsTabs />
     </HydrationBoundary>
   );
 };

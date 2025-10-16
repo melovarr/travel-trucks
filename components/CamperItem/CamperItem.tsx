@@ -20,6 +20,10 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
   // const handleRemove = () => {
   //   removeSelectedCamper(camper.id);
   // };
+  function capitalizeFirstLetter(str: string) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
 
   const toggleSelected = () => {
     if (isSelected) {
@@ -35,7 +39,7 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
     <li className={styles.camperItem}>
       <Image
         className={styles.camperItem__image}
-        src={camper.gallery?.[0]?.original || '/Link.jpg'}
+        src={camper.gallery?.[0]?.thumb || '/Link.jpg'}
         alt={camper.name}
         width={292}
         height={320}
@@ -62,25 +66,72 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
             </p>
 
             <div className={styles.camperItem__features}>
-              <p>
-                <strong>AC</strong> {camper.AC ? 'Yes' : 'No'}
+              <p className={styles.camperItem__feature}>
+                <Image
+                  src="/diagram.svg"
+                  alt="Transmission Icon"
+                  width={20}
+                  height={20}
+                  style={{ marginRight: 8, verticalAlign: 'middle' }}
+                />
+                {capitalizeFirstLetter(camper.transmission)}
               </p>
-              <p>
-                <strong>TV</strong> {camper.TV ? 'Yes' : 'No'}
+              <p className={styles.camperItem__feature}>
+                <Image
+                  src="/fuel-pump.svg"
+                  alt="Fuel Pump Icon"
+                  width={20}
+                  height={20}
+                  style={{ marginRight: 8, verticalAlign: 'middle' }}
+                />
+                {capitalizeFirstLetter(camper.engine)}
               </p>
-              <p>
-                <strong>transmission</strong> {camper.transmission}
-              </p>
-              <p>
-                <strong>kitchen</strong> {camper.kitchen ? 'Yes' : 'No'}
-              </p>
-              <p>
-                <strong>bathroom</strong> {camper.bathroom ? 'Yes' : 'No'}
-              </p>
+              {camper.kitchen ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/cup-hot.svg"
+                    alt="Kitchen Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  Kitchen
+                </p>
+              ) : null}
+              {camper.AC ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/wind.svg"
+                    alt="Wind Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  AC
+                </p>
+              ) : null}
+              {/* {camper.TV ? (
+                <p className={styles.camperItem__feature}>TV</p>
+              ) : null} */}
+              {/* {camper.bathroom ? (
+                <p className={styles.camperItem__feature}>Bathroom</p>
+              ) : null} */}
+              {/* {camper.radio ? (
+                <p className={styles.camperItem__feature}>Radio</p>
+              ) : null} */}
+              {/* {camper.refrigerator ? (
+                <p className={styles.camperItem__feature}>Refrigerator</p>
+              ) : null} */}
+              {/* {camper.microwave ? (
+                <p className={styles.camperItem__feature}>Microwave</p>
+              ) : null} */}
+              {/* {camper.gas ? (
+                <p className={styles.camperItem__feature}>Gas</p>
+              ) : null} */}
+              {/* {camper.water ? (
+                <p className={styles.camperItem__feature}>Water</p>
+              ) : null} */}
             </div>
-            <p>
-              <strong>Vehicle type:</strong> {camper.form}
-            </p>
           </div>
         </div>
         <Link href={`/catalog/${camper.id}`} className={styles.btn}>

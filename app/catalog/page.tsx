@@ -6,7 +6,7 @@ import { getCampers } from '../../lib/api';
 import styles from './catalogPage.module.css';
 import Filters from 'components/components/Filters/Filters';
 import useCampersStore from 'components/store/useCampersStore';
-import Button from 'components/components/UI/Buttons/Button';
+import Button from 'components/components/UI/Buttons/LoadButton';
 
 const PAGE_SIZE = 4;
 

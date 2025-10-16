@@ -6,6 +6,15 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 40px;
+}
+
+.locationInput label {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
 }
 
 .locationInput input {
@@ -19,6 +28,34 @@
   font-size: 16px;
   line-height: 150%;
   color: var(--main);
+}
+
+.equipmentSection {
+  margin-bottom: 32px;
+}
+
+.filtersTitle {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+
+.equipmentTitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  margin-bottom: 24px;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid var(--gray-light);
+  margin-bottom: 24px;
 }
 
 .equipmentButtons {
@@ -36,27 +73,36 @@
   width: 112px;
   height: 96px;
   display: flex;
-
-  /* display: flex;
+  flex-direction: column;
+  gap: 8px;
+  mix-blend-mode: multiply;
   align-items: center;
   justify-content: center;
-  width: 110px;
-  height: 40px;
-  border-radius: 8px;
-  background: var(--inputs);
+  background: var(--background);
   font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 150%;
+  letter-spacing: -0.01em;
+  text-align: center;
   color: var(--main);
-  border: none;
-  margin: 4px; */
 }
 
 .equipmentButtons button:hover {
   border: 1px solid var(--button);
-  /* background: var(--main); */
-  color: var(--white);
+}
+
+.bodyTypeSection {
+  margin-bottom: 40px;
+}
+
+.bodyTypeTitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  margin-bottom: 24px;
 }
 
 .bodyTypeButtons {
@@ -74,11 +120,23 @@
   width: 112px;
   height: 96px;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
+  mix-blend-mode: multiply;
   align-items: center;
+  justify-content: center;
+  background: var(--background);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main);
 }
 
 .bodyTypeButtons button:hover {
   border: 1px solid var(--button);
   /* background: var(--main); */
-  color: var(--white);
+  /* color: var(--white); */
 }

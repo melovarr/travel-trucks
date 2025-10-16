@@ -3,18 +3,38 @@
   align-items: center;
   justify-content: flex-start;
   gap: 24px;
-  padding: 12px;
+  padding: 24px 64px;
+  border-bottom: 1px solid var(--badges);
   border-block-end: 1px solid #ccc;
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: white;
+  background: var(--inputs);
+  /* background-color: white; */
 }
 
 .navigation {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
+  justify-content: center;
+  padding-left: 450px;
+  gap: 32px;
   list-style-type: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: var(--main);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--main);
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.link:hover,
+.link.active {
+  color: var(--button-hover);
 }
