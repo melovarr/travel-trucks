@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getSingleCamper } from 'components/lib/api';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
+import styles from './CamperDetails.module.css';
+import Loading from 'components/app/loading';
 
 // type Props = {
 //   params: Promise<{ id: string }>;
@@ -22,7 +24,7 @@ const CamperDetailsClient = () => {
     refetchOnMount: false,
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
   if (error || !camper) return <p>Some error..</p>;
   //   const camper = await getSingleCamper(id);
@@ -32,24 +34,40 @@ const CamperDetailsClient = () => {
 
   return (
     <div>
-      <h1>{camper.name}</h1>
-      <p>Rating: {camper.rating}</p>
-      <p>Location: {camper.location}</p>
-      <p>Price: ${camper.price}</p>
-      <div style={{ display: 'flex', gap: '10px' }}>
+      <h2 className={styles.camperName}>{camper.name}</h2>
+      <div className={styles.camperRatingLocation}>
+        <p className={styles.camperRating}>
+          <Image
+            src="/icons/prop2_pres.svg"
+            alt="Star icon"
+            width={16}
+            height={16}
+          />
+          {camper.rating}
+          {` (${camper.reviews.length} Reviews)`}
+        </p>
+        <p>
+          <Image src="/icons/map.svg" alt="Map icon" width={16} height={16} />
+          {camper.location}
+        </p>
+      </div>
+      <p className={styles.camperPrice}>
+        &euro;{Number(camper.price).toFixed(2)}
+      </p>
+      <div className={styles.imagesGallery}>
         {gallery.map((image, index) => (
           <Image
+            className={styles.camperPhotos}
             key={index}
             src={image.original}
             alt={`${camper.name} image ${index + 1}`}
             width={292}
             height={312}
-            style={{ objectFit: 'cover' }} // Щоб зображення було обрізане за потреби
             priority={index === 0} // Пріоритет для першої картинки
           ></Image>
         ))}
       </div>
-      <p>{camper.description}</p>
+      <p className={styles.camperDescription}>{camper.description}</p>
     </div>
   );
 };

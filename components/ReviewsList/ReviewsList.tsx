@@ -2,20 +2,18 @@
 
 import React from 'react';
 import { useCamperReviews } from '../../lib/hooks';
+import Loading from 'components/app/loading';
+import styles from './ReviewsList.module.css';
 
 export default function ReviewsList({ camperId }: { camperId: string }) {
-  const {
-    data: reviews,
-    isLoading,
-    error,
-  } = useCamperReviews(camperId);
+  const { data: reviews, isLoading, error } = useCamperReviews(camperId);
 
-  if (isLoading) return <p>Loading reviews...</p>;
+  if (isLoading) return <Loading />;
   if (error) return <p>Error loading reviews.</p>;
   if (!reviews || reviews.length === 0) return <p>No reviews yet.</p>;
 
   return (
-    <div>
+    <div className={styles.reviewsWrapper}>
       {reviews.map((item, idx) => (
         <div key={idx} style={{ marginBottom: 18 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -36,9 +34,7 @@ export default function ReviewsList({ camperId }: { camperId: string }) {
               {item.reviewer_name[0]}
             </span>
             <div>
-              <p style={{ fontWeight: 600, margin: 0 }}>
-                {item.reviewer_name}
-              </p>
+              <p style={{ fontWeight: 600, margin: 0 }}>{item.reviewer_name}</p>
               <span style={{ color: '#FFC531' }}>
                 {'★'.repeat(item.reviewer_rating)}
                 <span style={{ color: '#F2F4F7' }}>

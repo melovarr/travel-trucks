@@ -49,12 +49,21 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
         <div className={styles.camperItem__top}>
           <div className={styles.camperItem__header}>
             <h4>{camper.name}</h4>
-            <p>&euro;{Number(camper.price).toFixed(2)}</p>
-            <HeartIcon selected={isSelected} onClick={toggleSelected} />
+            <p>
+              &euro;{Number(camper.price).toFixed(2)}
+              <HeartIcon selected={isSelected} onClick={toggleSelected} />
+            </p>
           </div>
           <div className={styles.camperItem__subheader}>
-            <p>
-              <span className={styles.camperItem__star}>★</span> {camper.rating}
+            <p className={styles.camperRating}>
+              <Image
+                src="/icons/prop2_pres.svg"
+                alt="Star icon"
+                width={16}
+                height={16}
+              />
+              {camper.rating}
+              {` (${camper.reviews.length} Reviews)`}
             </p>
             <p>
               <strong>Location:</strong> {camper.location}
@@ -125,12 +134,30 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
               {/* {camper.microwave ? (
                 <p className={styles.camperItem__feature}>Microwave</p>
               ) : null} */}
-              {/* {camper.gas ? (
-                <p className={styles.camperItem__feature}>Gas</p>
-              ) : null} */}
-              {/* {camper.water ? (
-                <p className={styles.camperItem__feature}>Water</p>
-              ) : null} */}
+              {camper.gas ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/icons/hugeicons_gas-stove.svg"
+                    alt="Gas stove Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  Gas
+                </p>
+              ) : null}
+              {camper.water ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/icons/ion_water-outline.svg"
+                    alt="Water Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  Water
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

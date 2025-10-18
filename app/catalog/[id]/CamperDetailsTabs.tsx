@@ -5,6 +5,7 @@ import FeaturesPanel from '../../../components/FeaturesPanel/FeaturesPanel';
 import ReviewsList from '../../../components/ReviewsList/ReviewsList';
 import BookingForm from '../../../components/BookingForm/BookingForm';
 import { useParams } from 'next/navigation';
+import styles from './CamperDetails.module.css';
 
 const CamperDetailsTabs = () => {
   const [tab, setTab] = useState<'features' | 'reviews'>('features');
@@ -14,25 +15,13 @@ const CamperDetailsTabs = () => {
     <div>
       <div style={{ display: 'flex', borderBottom: '1px solid #eee', gap: 30 }}>
         <button
-          style={{
-            background: 'none',
-            border: 'none',
-            // borderBottom: tab === 'features' ? '3px solid #e44848' : 'none',
-            fontWeight: tab === 'features' ? 700 : 400,
-            cursor: 'pointer',
-          }}
+          className={`${styles.featuresBtn} ${tab === 'features' ? styles.active : ''}`}
           onClick={() => setTab('features')}
         >
           Features
         </button>
         <button
-          style={{
-            background: 'none',
-            border: 'none',
-            // borderBottom: tab === 'reviews' ? '3px solid #e44848' : 'none',
-            fontWeight: tab === 'reviews' ? 700 : 400,
-            cursor: 'pointer',
-          }}
+          className={`${styles.featuresBtn} ${tab === 'reviews' ? styles.active : ''}`}
           onClick={() => setTab('reviews')}
         >
           Reviews
@@ -46,21 +35,14 @@ const CamperDetailsTabs = () => {
           marginTop: 24,
         }}
       >
-        <div style={{ flex: 1 }}>
+        <div className={styles.featuresReviewsWrapper}>
           {tab === 'features' ? (
             <FeaturesPanel />
           ) : (
             <ReviewsList camperId={id} />
           )}
         </div>
-        <div
-          style={{
-            flex: '0 0 380px',
-            border: '1px solid #ececec',
-            borderRadius: 12,
-            padding: 24,
-          }}
-        >
+        <div className={styles.formWrapper}>
           <BookingForm />
         </div>
       </div>

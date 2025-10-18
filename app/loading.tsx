@@ -1,5 +1,19 @@
+import './globals.css';
+
 const Loading = () => {
-  return <p>Завантаження campers...</p>;
+  return (
+    <div className="loader">
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+    </div>
+  );
 };
 
 export default Loading;

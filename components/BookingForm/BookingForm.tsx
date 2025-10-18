@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import styles from './BookingForm.module.css';
+import Button from '../UI/Buttons/Button';
 
 const BookingForm = () => {
   const [fields, setFields] = useState({
@@ -23,15 +25,13 @@ const BookingForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-    >
-      <b>Book your campervan now</b>
+    <form onSubmit={handleSubmit} className={styles.bookingForm}>
+      <b className={styles.formTitle}>Book your campervan now</b>
       <span style={{ color: '#888', fontSize: 14 }}>
         Stay connected! We are always ready to help you.
       </span>
       <input
+        className={styles.nameInput}
         name="name"
         required
         placeholder="Name*"
@@ -39,6 +39,7 @@ const BookingForm = () => {
         onChange={handleChange}
       />
       <input
+        className={styles.emailInput}
         name="email"
         required
         placeholder="Email*"
@@ -47,6 +48,7 @@ const BookingForm = () => {
         onChange={handleChange}
       />
       <input
+        className={styles.dateInput}
         name="date"
         required
         placeholder="Booking date*"
@@ -55,22 +57,13 @@ const BookingForm = () => {
         onChange={handleChange}
       />
       <textarea
+        className={styles.commentInput}
         name="comment"
         placeholder="Comment"
         value={fields.comment}
         onChange={handleChange}
       />
-      <button
-        type="submit"
-        style={{
-          background: '#e44848',
-          color: '#fff',
-          borderRadius: 20,
-          padding: 10,
-        }}
-      >
-        Send
-      </button>
+      <Button>Send</Button>
     </form>
   );
 };

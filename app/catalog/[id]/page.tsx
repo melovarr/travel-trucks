@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 // import BookingForm from 'components/components/BookingForm/BookingForm';
 import CamperDetailsTabs from './CamperDetailsTabs';
+import styles from './CamperDetails.module.css';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -24,10 +25,12 @@ const CamperDetails = async ({ params }: Props) => {
   //   console.log('camper id:', camper);
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <CamperDetailsClient />
-      <CamperDetailsTabs />
-    </HydrationBoundary>
+    <div className={styles.container}>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <CamperDetailsClient />
+        <CamperDetailsTabs />
+      </HydrationBoundary>
+    </div>
   );
 };
 

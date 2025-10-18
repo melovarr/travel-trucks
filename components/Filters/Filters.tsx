@@ -67,20 +67,13 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
     <div className={styles.filtersContainer}>
       <div className={styles.locationInput}>
         <label>Location</label>
-        <div style={{ position: 'relative', display: 'inline-block' }}>
+        <div className={styles.inputWrapper}>
           <Image
+            className={styles.locationIcon}
             src="/icons/map.svg"
             alt="location icon"
             width={20}
             height={20}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: 18,
-              transform: 'translateY(-50%)',
-
-              pointerEvents: 'none',
-            }}
           />
           <input
             type="text"

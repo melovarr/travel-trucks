@@ -7,6 +7,7 @@ import styles from './catalogPage.module.css';
 import Filters from 'components/components/Filters/Filters';
 import useCampersStore from 'components/store/useCampersStore';
 import Button from 'components/components/UI/Buttons/LoadButton';
+import Loading from '../loading';
 
 const PAGE_SIZE = 4;
 
@@ -74,7 +75,7 @@ export default function Catalog() {
       </div>
       <div className={styles.listWrapper}>
         {isInitialLoad && loading ? (
-          <p>Loading campers...</p>
+          <Loading />
         ) : (
           <CamperList campers={campers} />
         )}

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './FeaturesPanel.module.css';
 
 const FEATURES = [
   { label: 'Automatic' },
@@ -18,7 +19,7 @@ const DETAILS = [
 ];
 
 const FeaturesPanel = () => (
-  <div>
+  <div className={styles.featuresWrapper}>
     <div style={{ marginBottom: 18 }}>
       {FEATURES.map(f => (
         <span

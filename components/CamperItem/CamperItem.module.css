@@ -44,11 +44,26 @@
   color: var(--main);
 }
 
+.camperItem__header p {
+  display: flex;
+  align-items: center;
+}
+
 .camperItem__subheader {
   display: flex;
   gap: 16px;
   font-size: 14px;
   color: var(--gray);
+}
+
+.camperRating {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main);
 }
 
 .camperItem__star {
@@ -97,4 +112,5 @@
   background: var(--button);
   border-color: transparent;
   text-align: center;
+  color: var(--white);
 }
