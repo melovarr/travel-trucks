@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Camper } from 'components/lib/api';
+import { Camper } from '../../lib/api';
 import Image from 'next/image';
 import styles from './CamperItem.module.css';
-import useCampersStore from 'components/store/useCampersStore';
+import useCampersStore from '../../store/useCampersStore';
 import HeartIcon from '../UI/Heart/HeartIcon';
 
 type CamperItemProps = {
@@ -65,8 +65,14 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
               {camper.rating}
               {` (${camper.reviews.length} Reviews)`}
             </p>
-            <p>
-              <strong>Location:</strong> {camper.location}
+            <p className={styles.camperLocation}>
+              <Image
+                src="/icons/map.svg"
+                alt="Map icon"
+                width={16}
+                height={16}
+              />
+              {camper.location}
             </p>
           </div>
           <div className={styles.camperItem__info}>
@@ -119,12 +125,30 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
                   AC
                 </p>
               ) : null}
-              {/* {camper.TV ? (
-                <p className={styles.camperItem__feature}>TV</p>
-              ) : null} */}
-              {/* {camper.bathroom ? (
-                <p className={styles.camperItem__feature}>Bathroom</p>
-              ) : null} */}
+              {camper.TV ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/icons/tv.svg"
+                    alt="TV Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  TV
+                </p>
+              ) : null}
+              {camper.bathroom ? (
+                <p className={styles.camperItem__feature}>
+                  <Image
+                    src="/icons/ph_shower.svg"
+                    alt="Bathroom Icon"
+                    width={20}
+                    height={20}
+                    style={{ marginRight: 8, verticalAlign: 'middle' }}
+                  />
+                  Bathroom
+                </p>
+              ) : null}
               {/* {camper.radio ? (
                 <p className={styles.camperItem__feature}>Radio</p>
               ) : null} */}
@@ -134,7 +158,7 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
               {/* {camper.microwave ? (
                 <p className={styles.camperItem__feature}>Microwave</p>
               ) : null} */}
-              {camper.gas ? (
+              {/* {camper.gas ? (
                 <p className={styles.camperItem__feature}>
                   <Image
                     src="/icons/hugeicons_gas-stove.svg"
@@ -145,8 +169,8 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
                   />
                   Gas
                 </p>
-              ) : null}
-              {camper.water ? (
+              ) : null} */}
+              {/* {camper.water ? (
                 <p className={styles.camperItem__feature}>
                   <Image
                     src="/icons/ion_water-outline.svg"
@@ -157,7 +181,7 @@ const CamperItem: React.FC<CamperItemProps> = ({ camper }) => {
                   />
                   Water
                 </p>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </div>

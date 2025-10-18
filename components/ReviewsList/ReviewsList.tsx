@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useCamperReviews } from '../../lib/hooks';
-import Loading from 'components/app/loading';
+import Loading from '../../app/loading';
 import styles from './ReviewsList.module.css';
 
 export default function ReviewsList({ camperId }: { camperId: string }) {

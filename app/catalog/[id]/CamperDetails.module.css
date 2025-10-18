@@ -32,6 +32,15 @@
   color: var(--main);
 }
 
+.camperLocation {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration-skip-ink: none;
+  color: var(--main);
+}
+
 .camperPrice {
   font-family: var(--font-family);
   font-weight: 600;

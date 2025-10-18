@@ -1,29 +1,23 @@
 import React from 'react';
 import styles from './Filters.module.css';
-import useCampersStore from 'components/store/useCampersStore';
+import useCampersStore from '../../store/useCampersStore';
 import Image from 'next/image';
 import Button from '../UI/Buttons/Button';
-
-// import AcIcon from '../../public/icons/wind.svg';
-// import AutomaticIcon from '../../public/icons/diagram.svg';
-// import KitchenIcon from '../../public/icons/cup-hot.svg';
-// import TvIcon from '../../public/icons/tv.svg';
-// import BathroomIcon from '../../public/icons/ph_shower.svg';
-
-export type FiltersType = {
-  location: string;
-  equipment: string[];
-  bodyType: string;
-  page?: number;
-  limit?: number;
-};
+import { FiltersType } from '../../store/useCampersStore';
 
 const EQUIPMENT = [
   { key: 'AC', label: 'AC', iconSrc: '/icons/wind.svg' },
-  { key: 'Automatic', label: 'Automatic', iconSrc: '/icons/diagram.svg' },
-  { key: 'Kitchen', label: 'Kitchen', iconSrc: '/icons/cup-hot.svg' },
+  { key: 'kitchen', label: 'Kitchen', iconSrc: '/icons/cup-hot.svg' },
   { key: 'TV', label: 'TV', iconSrc: '/icons/tv.svg' },
-  { key: 'Bathroom', label: 'Bathroom', iconSrc: '/icons/ph_shower.svg' },
+  { key: 'bathroom', label: 'Bathroom', iconSrc: '/icons/ph_shower.svg' },
+];
+
+const TRANSMISSION_TYPES = [
+  {
+    key: 'automatic',
+    label: 'Automatic',
+    iconSrc: '/icons/diagram.svg',
+  },
 ];
 
 const BODY_TYPES = [
@@ -56,10 +50,17 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
     });
   };
 
+  const handleTransmissionClick = (key: string) => {
+    setFilters({
+      ...filters,
+      transmission: filters.transmission === key ? '' : key,
+    });
+  };
+
   const handleBodyTypeClick = (key: string) => {
     setFilters({
       ...filters,
-      bodyType: key,
+      bodyType: filters.bodyType === key ? '' : key,
     });
   };
 
@@ -94,8 +95,24 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
             <button
               key={item.key}
               type="button"
-              className={filters.equipment.includes(item.key) ? 'active' : ''}
+              className={filters.equipment.includes(item.key) ? styles.active : ''}
               onClick={() => handleEquipmentClick(item.key)}
+            >
+              <Image
+                src={item.iconSrc}
+                alt={item.label}
+                width={32}
+                height={32}
+              />
+              {item.label}
+            </button>
+          ))}
+          {TRANSMISSION_TYPES.map(item => (
+            <button
+              key={item.key}
+              type="button"
+              className={filters.transmission === item.key ? styles.active : ''}
+              onClick={() => handleTransmissionClick(item.key)}
             >
               <Image
                 src={item.iconSrc}
@@ -117,7 +134,7 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
             <button
               key={item.key}
               type="button"
-              className={filters.bodyType === item.key ? 'active' : ''}
+              className={filters.bodyType === item.key ? styles.active : ''}
               onClick={() => handleBodyTypeClick(item.key)}
             >
               <Image
@@ -132,9 +149,6 @@ const Filters: React.FC<{ onSearch: () => void }> = ({ onSearch }) => {
         </div>
       </div>
       <Button onClick={onSearch}>Search</Button>
-      {/* <button className="search-btn" type="button" onClick={onSearch}>
-        Search
-      </button> */}
     </div>
   );
 };

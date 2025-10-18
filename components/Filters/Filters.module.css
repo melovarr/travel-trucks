@@ -151,6 +151,10 @@
 
 .bodyTypeButtons button:hover {
   border: 1px solid var(--button);
-  /* background: var(--main); */
-  /* color: var(--white); */
+}
+
+.equipmentButtons button.active,
+.bodyTypeButtons button.active {
+  border-color: var(--button); /* або ваш контрастний колір */
+  background: var(--badges); /* опціонально, для фонового підсвічування */
 }

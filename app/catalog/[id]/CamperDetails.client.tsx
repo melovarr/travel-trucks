@@ -1,11 +1,11 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getSingleCamper } from 'components/lib/api';
+import { getSingleCamper } from '../../../lib/api';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import styles from './CamperDetails.module.css';
-import Loading from 'components/app/loading';
+import Loading from '../../../app/loading';
 
 // type Props = {
 //   params: Promise<{ id: string }>;
@@ -46,7 +46,7 @@ const CamperDetailsClient = () => {
           {camper.rating}
           {` (${camper.reviews.length} Reviews)`}
         </p>
-        <p>
+        <p className={styles.camperLocation}>
           <Image src="/icons/map.svg" alt="Map icon" width={16} height={16} />
           {camper.location}
         </p>

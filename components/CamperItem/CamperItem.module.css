@@ -12,7 +12,7 @@
 .camperItem__image {
   border-radius: 10px;
   height: 320px;
-  width: auto; /* ширина автоматична */
+  width: 292px; /* ширина автоматична */
   object-fit: cover; /* обрізати по ширині */
   overflow: hidden;
   object-position: left center; /* позиціонування зображення */
@@ -44,6 +44,12 @@
   color: var(--main);
 }
 
+.camperItem__header h4 {
+  white-space: nowrap; /* Не переносити текст на новий рядок */
+  overflow: hidden; /* Ховати вихідний за межі контейнера текст */
+  text-overflow: ellipsis; /* Додавати три крапки в кінці обрізаного тексту */
+}
+
 .camperItem__header p {
   display: flex;
   align-items: center;
@@ -62,6 +68,15 @@
   font-size: 16px;
   line-height: 150%;
   text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--main);
+}
+
+.camperLocation {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
   text-decoration-skip-ink: none;
   color: var(--main);
 }

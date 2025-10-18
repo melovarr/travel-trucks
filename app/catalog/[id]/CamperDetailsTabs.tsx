@@ -37,7 +37,7 @@ const CamperDetailsTabs = () => {
       >
         <div className={styles.featuresReviewsWrapper}>
           {tab === 'features' ? (
-            <FeaturesPanel />
+            <FeaturesPanel camperId={id} />
           ) : (
             <ReviewsList camperId={id} />
           )}

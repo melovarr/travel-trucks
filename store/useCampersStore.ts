@@ -1,6 +1,12 @@
 import { create } from 'zustand';
 import { Camper } from '../lib/api';
-import { FiltersType } from 'components/components/Filters/Filters';
+
+export type FiltersType = {
+  location: string;
+  equipment: string[];
+  bodyType: string;
+  transmission?: string;
+};
 
 type Store = {
   campers: Camper[];
@@ -17,7 +23,7 @@ type Store = {
 
 const useCampersStore = create<Store>(set => ({
   campers: [],
-  filters: { location: '', equipment: [], bodyType: '' },
+  filters: { location: '', equipment: [], bodyType: '', transmission: '' },
   selectedCampers: [],
 
   setCampers: campers => set({ campers }),

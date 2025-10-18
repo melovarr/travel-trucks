@@ -1,4 +1,4 @@
-import { getSingleCamper } from 'components/lib/api';
+import { getSingleCamper } from '../../../lib/api';
 import CamperDetailsClient from './CamperDetails.client';
 import {
   dehydrate,

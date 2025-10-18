@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FiltersType } from '../components/Filters/Filters';
+import { FiltersType } from '../store/useCampersStore';
 
 export type Gallery = {
   thumb: string;
@@ -59,6 +59,7 @@ export const getCampers = async (
   const params = new URLSearchParams();
   if (filters.location) params.append('location', filters.location);
   if (filters.bodyType) params.append('form', filters.bodyType);
+  if (filters.transmission) params.append('transmission', filters.transmission);
   filters.equipment.forEach((eq: string) => params.append(eq, 'true'));
   if (filters.page) params.append('page', filters.page.toString());
   if (filters.limit) params.append('limit', filters.limit.toString());
