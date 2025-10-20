@@ -44,7 +44,7 @@ const CamperDetailsClient = () => {
             height={16}
           />
           {camper.rating}
-          {` (${camper.reviews.length} Reviews)`}
+          {` (${camper.reviews?.length ?? 0} Reviews)`}
         </p>
         <p className={styles.camperLocation}>
           <Image src="/icons/map.svg" alt="Map icon" width={16} height={16} />

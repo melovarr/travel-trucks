@@ -98,3 +98,52 @@ a {
     transform: translateY(0);
   }
 }
+
+/* .react-datepicker-wrapper {
+  background-color: #e44848 !important;
+} */
+.react-datepicker {
+  border-radius: 12px !important;
+  padding: 18px 282px 18px 18px !important;
+  width: 276px !important;
+  height: 284px !important;
+  background-color: var(--background) !important;
+  font-family: var(--font-family) !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  line-height: 120% !important;
+  text-align: center !important;
+  color: var(--main) !important;
+}
+.react-datepicker__header {
+  background: var(--background) !important;
+  color: var(--main) !important;
+  border-bottom: 1px solid var(--main) !important;
+}
+.react-datepicker__day,
+.react-datepicker__day-name {
+  color: var(--main) !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+}
+.react-datepicker__close-icon {
+  filter: invert(1) !important;
+}
+
+.react-datepicker__navigation-icon {
+  top: 15px !important;
+  border-color: #1a73e8 !important;
+  fill: #1a73e8 !important;
+  stroke: #1a73e8 !important;
+}
+.react-datepicker__navigation--previous {
+  border-color: transparent transparent transparent #1a73e8 !important; /* колір стрілки ліворуч */
+}
+
+.react-datepicker__navigation--next {
+  border-color: transparent #1a73e8 transparent transparent !important; /* колір стрілки праворуч */
+}

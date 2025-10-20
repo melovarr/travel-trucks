@@ -4,14 +4,14 @@ import { useCamperFeatures } from '../../lib/hooks';
 import Image from 'next/image';
 import Loading from '../../app/loading';
 
-const DETAILS = [
-  { label: 'Form', value: 'Panel truck' },
-  { label: 'Length', value: '5.4 m' },
-  { label: 'Width', value: '2.01 m' },
-  { label: 'Height', value: '2.05 m' },
-  { label: 'Tank', value: '132 l' },
-  { label: 'Consumption', value: '12.4l/100km' },
-];
+// const DETAILS = [
+//   { label: 'Form', value: 'Panel truck' },
+//   { label: 'Length', value: '5.4 m' },
+//   { label: 'Width', value: '2.01 m' },
+//   { label: 'Height', value: '2.05 m' },
+//   { label: 'Tank', value: '132 l' },
+//   { label: 'Consumption', value: '12.4l/100km' },
+// ];
 
 const FeaturesPanel = ({ camperId }: { camperId: string }) => {
   const { data: camper, isLoading, error } = useCamperFeatures(camperId);
@@ -94,39 +94,66 @@ const FeaturesPanel = ({ camperId }: { camperId: string }) => {
             Bathroom
           </p>
         ) : null}
-        {/* {camper.radio ? (
-                <p className={styles.camperItem__feature}>Radio</p>
-              ) : null} */}
-        {/* {camper.refrigerator ? (
-                <p className={styles.camperItem__feature}>Refrigerator</p>
-              ) : null} */}
-        {/* {camper.microwave ? (
-                <p className={styles.camperItem__feature}>Microwave</p>
-              ) : null} */}
-        {/* {camper.gas ? (
-                <p className={styles.camperItem__feature}>
-                  <Image
-                    src="/icons/hugeicons_gas-stove.svg"
-                    alt="Gas stove Icon"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 8, verticalAlign: 'middle' }}
-                  />
-                  Gas
-                </p>
-              ) : null} */}
-        {/* {camper.water ? (
-                <p className={styles.camperItem__feature}>
-                  <Image
-                    src="/icons/ion_water-outline.svg"
-                    alt="Water Icon"
-                    width={20}
-                    height={20}
-                    style={{ marginRight: 8, verticalAlign: 'middle' }}
-                  />
-                  Water
-                </p>
-              ) : null} */}
+        {camper.radio ? (
+          <p className={styles.camperItem__feature}>
+            <Image
+              src="/icons/ui-radios.svg"
+              alt="Radio Icon"
+              width={20}
+              height={20}
+              style={{ marginRight: 8, verticalAlign: 'middle' }}
+            />
+            Radio
+          </p>
+        ) : null}
+        {camper.refrigerator ? (
+          <p className={styles.camperItem__feature}>
+            <Image
+              src="/icons/solar_fridge-outline.svg"
+              alt="Refrigerator Icon"
+              width={20}
+              height={20}
+              style={{ marginRight: 8, verticalAlign: 'middle' }}
+            />
+            Refrigerator
+          </p>
+        ) : null}
+        {camper.microwave ? (
+          <p className={styles.camperItem__feature}>
+            <Image
+              src="/icons/lucide_microwave.svg"
+              alt="Microwave Icon"
+              width={20}
+              height={20}
+              style={{ marginRight: 8, verticalAlign: 'middle' }}
+            />
+            Microwave
+          </p>
+        ) : null}
+        {camper.gas ? (
+          <p className={styles.camperItem__feature}>
+            <Image
+              src="/icons/hugeicons_gas-stove.svg"
+              alt="Gas Icon"
+              width={20}
+              height={20}
+              style={{ marginRight: 8, verticalAlign: 'middle' }}
+            />
+            Gas
+          </p>
+        ) : null}
+        {camper.water ? (
+          <p className={styles.camperItem__feature}>
+            <Image
+              src="/icons/ion_water-outline.svg"
+              alt="Water Icon"
+              width={20}
+              height={20}
+              style={{ marginRight: 8, verticalAlign: 'middle' }}
+            />
+            Water
+          </p>
+        ) : null}
       </div>
       <div className={styles.divider}>
         <h3 className={styles.vehicleDetails}>Vehicle details</h3>

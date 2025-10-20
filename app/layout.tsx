@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import 'react-datepicker/dist/react-datepicker.css';
+// import uk from 'date-fns/locale/uk';
+// registerLocale('uk', uk);
 import Header from '../components/Header/Header';
 import TanStackProvider from '../components/TanStackProvider/TanStackProvider';
 
