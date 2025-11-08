@@ -30,8 +30,10 @@ export async function GET(request: NextRequest) {
     // Наприклад, отримуємо список кемперів:
     const { data } = await api('/campers');
 
-    // Фільтруємо data.items, використовуючи отримані params
-    let filteredCampers = data.items as Camper[];
+    // Mock API повертає масив безпосередньо, а не об'єкт з items
+    // Перевіряємо, чи data є масивом, чи має властивість items
+    const campersArray = Array.isArray(data) ? data : data?.items || [];
+    let filteredCampers = campersArray as Camper[];
 
     if (location) {
       filteredCampers = filteredCampers.filter((c: Camper) =>

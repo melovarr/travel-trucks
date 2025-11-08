@@ -29,6 +29,15 @@ const BookingForm = () => {
     e.preventDefault();
     // Місце для handle booking
     alert('Booking request sent!');
+
+    // Очищаємо форму після успішного сабміту
+    setFields({
+      name: '',
+      email: '',
+      date: '',
+      comment: '',
+    });
+    setDate(null);
   };
 
   return (

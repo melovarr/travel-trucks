@@ -45,8 +45,21 @@ export type camperListResponse = {
   total: number;
 };
 
+// Використовуємо відносний шлях для клієнтських запитів
+// Для SSR потрібен абсолютний URL
+const getBaseURL = () => {
+  // Якщо код виконується в браузері (клієнт)
+  if (typeof window !== 'undefined') {
+    return '/api';
+  }
+  // Якщо код виконується на сервері (SSR)
+  // Використовуємо змінну середовища або значення за замовчуванням
+  const host = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+  return `${host}/api`;
+};
+
 const nextServer = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: getBaseURL(),
   withCredentials: true, // дозволяє axios працювати з cookie
 });
 
